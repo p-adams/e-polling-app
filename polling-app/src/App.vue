@@ -1,16 +1,18 @@
 <template>
   <div id="app">
     <h1>{{ msg }}</h1>
-    <register></register>
+    <register :states="states"></register>
   </div>
 </template>
 
 <script>
 import Register from './Register.vue'
+import States from './States.js'
 export default {
   data () {
     return {
-      msg: 'E Polling App'
+      msg: 'E Polling App',
+      states: States
     }
   },
   components:{

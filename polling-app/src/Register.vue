@@ -44,13 +44,13 @@
                     </div>
                     <div class="form-group">
                         <label for="party">Political party:</label>
-                        <select class="form-control">
+                        <select class="form-control" @change="party">
                             <option>Democrat</option>
                             <option>Republican</option>
                             <option>Independent</option>
                         </select>
                     </div>
-                    <button @click="register">Register</button>
+                    <button class="btn btn-default" @click="reg">Register</button>
                 </form>
             </div>
         </div>
@@ -66,17 +66,9 @@
             'getAge',
             'firstname',
             'lastname',
-            'gender'
-            ],
-        data(){
-            return{
-            }
-        },
-        methods:{
-            register: e => {
-                e.preventDefault()
-            }
-        }
-
+            'gender',
+            'party',
+            'reg'
+            ]
     }
 </script>

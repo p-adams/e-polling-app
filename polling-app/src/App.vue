@@ -2,25 +2,30 @@
   <div id="app">
     <h2>E-Polling App</h2>
     <h4>Using Instant Runoff Voting method</h4>
-    {{gender}}
-    <register :states="states"
+    <register v-if="!registered" :states="states"
               :getState="getState"
               :citizenship="getCitizenship"
               :getAge="getAge"
               :firstname="getFirstname"
               :lastname="getLastname"
               :gender="getGender"
+              :party="getParty"
+              :reg="register"
     >
     </register>
+    <vote v-if="registered"></vote>
+    
   </div>
 </template>
 
 <script>
 import Register from './Register.vue'
 import States from './States.js'
+import Vote from './Vote.vue'
 export default {
   data () {
     return {
+      voters: [],
       msg: 'E Polling App',
       states: States,
       citizenship: '',
@@ -29,11 +34,13 @@ export default {
       lastname: '',
       gender: '',
       residence: 'AL',
-      party: ''
+      party: 'Democrat',
+      registered: false
     }
   },
   components:{
-    Register
+    Register,
+    Vote
   },
   methods:{
     getState(e){
@@ -53,6 +60,21 @@ export default {
     },
     getGender(e){
       this.gender = e.target.value
+    },
+    getParty(e){
+      this.party = e.target.value
+    },
+    register(e){
+      e.preventDefault()
+      this.voters.push({
+        citizen: this.citizenship,
+        age: this.age,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        res: this.residence,
+        party: this.party
+      })
+      this.registered = !this.registered
     }
   }
 }

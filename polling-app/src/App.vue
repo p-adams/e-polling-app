@@ -2,8 +2,7 @@
   <div id="app">
     <h2>E-Polling App</h2>
     <h4>Using Instant Runoff Voting method</h4>
-    {{voters}}
-    <register v-if="!registered" :states="states"
+    <!--<register v-if="!registered" :states="states"
               :getState="getState"
               :citizenship="getCitizenship"
               :getAge="getAge"
@@ -12,9 +11,11 @@
               :gender="getGender"
               :party="getParty"
               :reg="register"
-    >
-    </register>
+
+              </register>
     <vote v-if="registered"></vote>
+    >-->
+    <vote></vote>
     
   </div>
 </template>

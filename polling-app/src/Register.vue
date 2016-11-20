@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address">State of residence:</label>
-                        <select class="form-control">
+                        <select class="form-control" @change="getState">
                             <option v-for="state in states" :value="state.name">
                                 {{state.abbreviation}}
                             </option>
@@ -59,7 +59,11 @@
 
 <script>
     export default{
-        props: ['states'],
+        props: [
+            'states',
+            'getState'
+
+            ],
         methods:{
             register: e => {
                 e.preventDefault()

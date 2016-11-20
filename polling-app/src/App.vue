@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
-    {{citizen}}
+    <h2>E-Polling App</h2>
+    <h4>Using Instant Runoff Voting method</h4>
+    {{residence}}
     <register :states="states"
+              :getState="getState"
+              
     >
     </register>
   </div>
@@ -16,10 +19,22 @@ export default {
     return {
       msg: 'E Polling App',
       states: States,
+      citizenship: '',
+      age: 0,
+      firstname: '',
+      lastname: '',
+      gender: '',
+      residence: 'AL',
+      party: ''
     }
   },
   components:{
     Register
+  },
+  methods:{
+    getState(e){
+      this.residence = e.target.value
+    }
   }
 }
 </script>

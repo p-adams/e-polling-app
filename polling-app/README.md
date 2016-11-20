@@ -1,5 +1,7 @@
 # voting-app
 
+E-polling App recreates the polling process during elections using the Instant Runoff Voting method.
+
 > A Vue.js project
 
 ## Build Setup

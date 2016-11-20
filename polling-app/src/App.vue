@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <h1>{{ msg }}</h1>
-    <register :states="states"></register>
+    {{citizen}}
+    <register :states="states"
+    >
+    </register>
   </div>
 </template>
 
@@ -12,7 +15,7 @@ export default {
   data () {
     return {
       msg: 'E Polling App',
-      states: States
+      states: States,
     }
   },
   components:{

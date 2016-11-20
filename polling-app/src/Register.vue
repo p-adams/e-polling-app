@@ -37,9 +37,9 @@
                     <div class="form-group">
                         <label for="address">State of residence:</label>
                         <select class="form-control">
-                            <option>Foo</option>
-                            <option>Bar</option>
-                            <option>Baz</option>
+                            <option v-for="state in states" :value="state.name">
+                                {{state.abbreviation}}
+                            </option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -2,10 +2,14 @@
   <div id="app">
     <h2>E-Polling App</h2>
     <h4>Using Instant Runoff Voting method</h4>
-    {{residence}}
+    {{gender}}
     <register :states="states"
               :getState="getState"
-              
+              :citizenship="getCitizenship"
+              :getAge="getAge"
+              :firstname="getFirstname"
+              :lastname="getLastname"
+              :gender="getGender"
     >
     </register>
   </div>
@@ -34,6 +38,21 @@ export default {
   methods:{
     getState(e){
       this.residence = e.target.value
+    },
+    getCitizenship(e){
+      this.citizenship = e.target.value
+    },
+    getAge(e){
+      this.age = e.target.value
+    },
+    getFirstname(e){
+      this.firstname = e.target.value
+    },
+    getLastname(e){
+      this.lastname = e.target.value
+    },
+    getGender(e){
+      this.gender = e.target.value
     }
   }
 }

@@ -2,6 +2,7 @@
   <div id="app">
     <h2>E-Polling App</h2>
     <h4>Using Instant Runoff Voting method</h4>
+    {{voters}}
     <register v-if="!registered" :states="states"
               :getState="getState"
               :citizenship="getCitizenship"
@@ -66,15 +67,17 @@ export default {
     },
     register(e){
       e.preventDefault()
-      this.voters.push({
-        citizen: this.citizenship,
-        age: this.age,
-        firstname: this.firstname,
-        lastname: this.lastname,
-        res: this.residence,
-        party: this.party
-      })
-      this.registered = !this.registered
+      if(this.citizenship==='yes' && this.age >= 18){
+          this.voters.push({
+            citizen: this.citizenship,
+            age: this.age,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            res: this.residence,
+            party: this.party
+          })
+          this.registered = !this.registered
+      }
     }
   }
 }

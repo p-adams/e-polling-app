@@ -10,7 +10,7 @@
                             <label><input type="radio"  name="citiz" value="no" @change="citizenship">No</label>
                         </div>
                         <div class="radio">
-                            <label><input type="radio"  name="citiz" value="yes" @change="citizenship" checked>Yes</label>
+                            <label><input type="radio"  name="citiz" value="yes" @change="citizenship">Yes</label>
                         </div>
                     </div>
                     <div class="form-group">

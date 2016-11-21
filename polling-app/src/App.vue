@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <h2>E-Polling App</h2>
-    <h4>Using Instant Runoff Voting method</h4>
-    <!--<register v-if="!registered" :states="states"
+    <h2 id="title">E-Polling App</h2>
+    <h4 id="sub">Using Instant Runoff Voting method</h4><hr>
+    <register v-if="!registered" :states="states"
               :getState="getState"
               :citizenship="getCitizenship"
               :getAge="getAge"
@@ -11,11 +11,11 @@
               :gender="getGender"
               :party="getParty"
               :reg="register"
-
-              </register>
+    >
+    </register>
+    
+    
     <vote v-if="registered"></vote>
-    >-->
-    <vote></vote>
     
   </div>
 </template>
@@ -85,7 +85,15 @@ export default {
 </script>
 
 <style>
-body {
-  font-family: Helvetica, sans-serif;
-}
+  body {
+    font-family: Helvetica, sans-serif;
+  }
+  #title{
+    margin-left: 25px;
+  }
+  #sub{
+    margin-left: 45px;
+    margin-top: 10px;
+  }
+
 </style>

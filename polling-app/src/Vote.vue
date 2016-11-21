@@ -2,11 +2,15 @@
     <div class="container">
        <div class="jumbotron">
         <h4>Rank the candidates below in order of preference - 1st choice, 2nd choice, 3rd choice, etc.</h3>
-        <div class="row">
-            {{votes}}
+        <div id="results" v-if="tally">
+            <ul class="list-group" >
+                <li class="list-group-item" v-for="c in cand">{{c.name}} is {{c.rank}}</li>
+            </ul>
+        </div>
+        <div class="row" v-if="!tally">
             <div class="col-sm-4" v-for="(candidate, index) in candidates">
                 <div>
-                <h3>{{candidate.name}} - {{index}}</h3>
+                <h3>{{candidate.name}}</h3>
                 <img :src="candidate.url"><img>
                 <select @change="getName">
                     <option>-</option>
@@ -15,11 +19,12 @@
                 </div>
             </div>
         </div>
-        <button @click="vote" class="btn btn-primary">Cast vote</button>
+        <button class="btn btn-primary" @click="vote" v-if="!tally">Cast vote</button>
      </div>
     </div>
 </template>
 <script>
+    import sortBy from 'lodash'
     export default {
         data(){
             return{
@@ -27,6 +32,7 @@
                 ranks: ["1st", "2nd", "3rd", "4th", "5th", "6th"],
                 name: '',
                 rank: '',
+                tally: false,
                 votes: []
             }
         },
@@ -48,18 +54,22 @@
                 this.name = e.target.value
             },
             getRank(index, rank){
+               if(rank==="4th") this.votes.splice(index, 1)
                this.votes.push({index: index, name: this.name, rank: this.rank = rank})
             },
             vote(){
-              var self = this
-              this.votes.map( v => {
-                   console.log(v.name, v.rank)
-                   if(v.rank==="3rd") self.votes.splice(v.index, 1)
-               })
+             this.tally = true
             }
         },
         computed: {
-
+            cand(){
+                return _.sortBy(this.votes, 'rank')
+            },
+            rank(){
+                this.votes.map( c => {
+                    return c.rank
+                })
+            }
         }
     }
 </script>
@@ -74,5 +84,8 @@
     }
     .btn-primary{
         float: right;
+    }
+    #results{
+        margin-top: 50px;
     }
 </style>

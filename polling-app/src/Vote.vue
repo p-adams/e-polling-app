@@ -4,16 +4,18 @@
         <h4>Rank the candidates below in order of preference - 1st choice, 2nd choice, 3rd choice, etc.</h3>
         <div class="row">
             {{votes}}
-            <div class="col-sm-4" v-for="candidate in candidates">
-                <h3>{{candidate.name}}</h3>
+            <div class="col-sm-4" v-for="(candidate, index) in candidates">
+                <div>
+                <h3>{{candidate.name}} - {{index}}</h3>
                 <img :src="candidate.url"><img>
                 <select @change="getName">
                     <option>-</option>
-                    <option v-for="rank in ranks" @click="getRank(rank)" :value="candidate.name">{{rank}}</option>
+                    <option v-for="rank in ranks" @click="getRank(index, rank)" :value="candidate.name">{{rank}}</option>
                 </select>
+                </div>
             </div>
         </div>
-        <button @click="tally" class="btn btn-primary">Cast vote</button>
+        <button @click="vote" class="btn btn-primary">Cast vote</button>
      </div>
     </div>
 </template>
@@ -23,7 +25,7 @@
             return{
                 candidates: [],
                 ranks: ["1st", "2nd", "3rd", "4th", "5th", "6th"],
-                id: '',
+                name: '',
                 rank: '',
                 votes: []
             }
@@ -45,17 +47,19 @@
             getName(e){
                 this.name = e.target.value
             },
-            getRank(r){
-               this.votes.push({name: this.name, rank: this.rank=r})
+            getRank(index, rank){
+               this.votes.push({index: index, name: this.name, rank: this.rank = rank})
             },
-            tally(){
-               var v = this.votes.map( v => {
+            vote(){
+              var self = this
+              this.votes.map( v => {
                    console.log(v.name, v.rank)
+                   if(v.rank==="3rd") self.votes.splice(v.index, 1)
                })
             }
         },
         computed: {
-            
+
         }
     }
 </script>

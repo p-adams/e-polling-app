@@ -54,7 +54,6 @@
                 this.name = e.target.value
             },
             getRank(index, rank){
-               if(rank==="4th") this.votes.splice(index, 1)
                this.votes.push({index: index, name: this.name, rank: this.rank = rank})
             },
             vote(){
@@ -64,11 +63,6 @@
         computed: {
             cand(){
                 return _.sortBy(this.votes, 'rank')
-            },
-            rank(){
-                this.votes.map( c => {
-                    return c.rank
-                })
             }
         }
     }
